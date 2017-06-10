@@ -1,0 +1,20 @@
+@import "colors";
+@import 'queries';
+
+$host: '/#{$ENV_HOST}';
+$font: 'ApercuRegular', Helvetica, Sans-Serif;
+$space: 20px;
+
+$zIndex: 9999999997;
+
+$thumb_width: 75px;
+$gallery_height: 125px;
+
+$desktopModalWidth: 1441px;
+$desktopModalHeight: 857px;
+
+$wideModalWidth: 1374px;
+$wideIframeWidth: 711px;
+$wideIframeHeight: 780px;
+
+$desktopIframeWidth: 710px;

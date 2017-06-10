@@ -1,0 +1,48 @@
+@mixin widescreenModal($iframeWidth) {
+  dialog[id^='spylightModal'] {
+    &[data-overflow="false"] {
+      [data-dialog='wrapper'] {
+        @include hvalign;
+      }
+    }
+    &[data-overflow="true"] {
+      overflow: auto;
+      [data-dialog='wrapper'] {
+        @include halign;
+      }
+    }
+    [data-dialog='wrapper'] {
+      max-width: $wideModalWidth;
+
+      section[data-dialog="content"] {
+        margin: 0 30px;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        width: $iframeWidth;
+
+        [data-dialog="iframeHolder"] {
+          position: relative;;
+          z-index: $zIndex;
+          width: 100%;
+          padding-bottom: #{$wideIframeHeight / $wideIframeWidth * 100 + %};
+          iframe {
+            position: absolute;
+          }
+        }
+
+      }
+      [data-component="ad"] {
+        width: 300px;
+        height: 600px;
+        background: #A4A4A4;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        h4 {
+          @include hvalign;
+        }
+      }
+    }
+  }
+}

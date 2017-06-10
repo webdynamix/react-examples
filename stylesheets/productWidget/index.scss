@@ -1,0 +1,156 @@
+@import 'bourbon';
+@import 'neat';
+@import 'gallery';
+@import '../fonts';
+@import '../constants';
+@import '../helpers';
+
+@mixin ctaTitle {
+  position: relative;
+  font-size: 19px;
+  font-weight: 500;
+  font-family: $font;
+  margin: 5px 0;
+}
+
+@mixin outfitLine {
+  &:before {
+    @include sudoLine(1px, $white);
+    bottom: 5px;
+  }
+  &:after {
+    @include sudoLine(5px, $red);
+    bottom: 0;
+  }
+}
+
+button[data-fetching="true"] {
+  @include ctaButton;
+  font-family: Helvetica, Sans-Serif;
+}
+
+h4[data-fetching="true"] {
+  @include ctaTitle;
+}
+
+*[id^='sp-gallery-'] {
+  @include gallery;
+  font-family: $font;
+  border-bottom: 1px solid $gray;
+  white-space: nowrap;
+  line-height: normal;
+
+  h4 {
+    @include ctaTitle;
+  }
+
+  section[data-section="cta"] {
+    float: left;
+  }
+
+  section[data-component="gallery"] {
+    overflow: hidden;
+    height: $gallery_height;
+  }
+
+  ul[data-section="outfits"] {
+    @include ul;
+    position: relative;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    > li {
+      display: inline-block;
+      figure {
+        position: relative;
+        float: left;
+        margin: 0 1px 0 0;
+        > img {
+          width: 75px;
+          float: left;
+          cursor: pointer;
+        }
+        &:hover {
+          @include outfitLine;
+        }
+      }
+      > section {
+        max-width: 0;
+        opacity: 0;
+        height: auto;
+        transition: max-width .5s ease-out, opacity .5s ease-out;
+        [data-gallery="wrapper"] {
+          overflow: visible;
+          padding-bottom: 0;
+          @include media($mobile) {
+            padding-right: 85px;
+          }
+        }
+        ul {
+          margin-top: 14px;
+        }
+      }
+      &.active {
+        figure {
+          @include outfitLine;
+        }
+        > section {
+          max-width: 1000px;
+          opacity: 1;
+          transition: max-width .3s ease-in, opacity .3s ease-in;
+        }
+      }
+      @include media($mobile) {
+        &[data-initial="true"] {
+          position: relative;
+          white-space: normal;
+          &:after {
+            font-family: $font;
+            font-weight: 400;
+            white-space: pre;
+            content: 'Swipe right or left\ato see more products';
+            display: block;
+            position: absolute;
+            text-align: left;
+            left: 75px;
+            top: 0;
+            bottom: 0;
+            z-index: 9;
+            background: rgba(0,0,0,0.6);
+            color: $white;
+            width: 100%;
+            min-width: 150px;
+            padding: 33px 0 0 15px;
+            font-size: 13px;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, .7);
+          }
+        }
+      }
+    }
+  }
+
+  &.sp_scaled {
+    section[data-section="cta"] {
+      float: left;
+      >button {
+        @include ctaButton;
+      }
+    }
+  }
+
+  &.sp_expanded {
+    h4 {
+      top: 19px;
+    }
+    section[data-component="gallery"] {
+      display: inline-block;
+    }
+    >button {
+      @include ctaButton;
+      vertical-align: top;
+      position: relative;
+      top: 20px;
+      left: 10px;
+    }
+  }
+}

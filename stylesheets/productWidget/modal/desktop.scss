@@ -1,0 +1,22 @@
+@mixin desktopModal {
+  dialog[id^='spylightModal'] {
+    [data-dialog='wrapper'] {
+      width: calc(100% - #{$space * 2}) !important;
+      max-width: $desktopModalWidth;
+      @include hvalign();
+
+      section[data-dialog="content"] {
+        [data-dialog="iframeHolder"] {
+          position: relative;;
+          z-index: $zIndex;
+          width: 100%;
+          padding-bottom: #{$desktopModalHeight / $desktopModalWidth * 100 + %};
+        }
+      }
+      button {
+        top: 30px;
+        right: 30px;
+      }
+    }
+  }
+}

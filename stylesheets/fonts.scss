@@ -1,0 +1,15 @@
+@import 'constants';
+
+$apercu_regular: '#{$host}/fonts/apercu_regular';
+
+@font-face {
+    font-family:'ApercuRegular';
+    src: url('#{$apercu_regular}.eot');
+	  src: url('#{$apercu_regular}.eot?#iefix') format('embedded-opentype'),
+		url('#{$apercu_regular}.woff2') format('woff2'),
+		url('#{$apercu_regular}.woff') format('woff'),
+    url('#{$apercu_regular}.ttf') format('truetype'),
+		url('#{$apercu_regular}.svg#apercuregular') format('svg');
+    font-style: normal;
+    font-stretch: normal;
+}

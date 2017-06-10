@@ -1,0 +1,114 @@
+@import 'bourbon';
+@import 'neat';
+@import '../../constants';
+@import '../../helpers';
+@import 'mobile';
+@import 'desktop';
+@import 'tablet';
+@import 'widescreen';
+
+@mixin button {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  z-index: $zIndex + 1;
+  top: 20px;
+  right: 20px;
+  width: 25px;
+  height: 25px;
+  background-image: url('#{$host}/images/close.svg');
+  background-size: 100% 100%;
+  background-color: transparent;
+  text-indent: -200px;
+  overflow: hidden;
+  border: none;
+}
+
+dialog[id^='spylightModal'] {
+  position: fixed;
+  z-index: -1;
+  border: 0px;
+  padding: 0;
+  top: 100%;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  display: block;
+  background: rgba(0,0,0,.8);
+  transition: opacity .3s ease, top .3s ease, margin-top .3s ease, z-index .3s step-end, left .3s step-end;
+
+  &.active {
+    opacity: 1;
+    top: 0;
+    height: 100%;
+    z-index: $zIndex;
+    transition: opacity .3s ease, top .3s ease, margin-top .3s ease, z-index .3s step-start, left .3s step-start;
+  }
+
+  button {
+    @include button;
+  }
+
+  [data-dialog='wrapper'] {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    border: none;
+    section[data-dialog="content"] {
+      height: inherit;
+      [data-dialog="iframeHolder"] {
+        background: $white;
+        height: 100%;
+        &:before {
+          content: 'Loading Product...';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translateX(-50%) translateY(-50%);
+          -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+          color: #777;
+          display: block;
+        }
+        iframe {
+          display: block;
+          z-index: 2;
+          top: 0;
+          left: 0;
+          min-width: 100%;
+          min-height: 100%;
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+@include media($mobile) {
+  @include mobileModal;
+}
+
+@include media($tablet) {
+  @include mobileModal;
+}
+
+@include media($medium) {
+  @include widescreenModal($desktopIframeWidth);
+  [data-dialog='wrapper'] {
+    text-align: center;
+  }
+}
+
+@include media($desktop) {
+  @include widescreenModal($desktopIframeWidth);
+  [data-dialog='wrapper'] {
+    text-align: center;
+  }
+}
+
+@include media($widescreen) {
+  @include widescreenModal($wideIframeWidth);
+}

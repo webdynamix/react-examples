@@ -1,0 +1,50 @@
+@import '../constants';
+
+@mixin thumbHover {
+  img {
+    box-shadow: 0px 1px 15px 1px $shadow;
+  }
+  span {
+    display: block;
+    white-space: nowrap;
+    &.price {
+      color: $red;
+    }
+  }
+}
+
+@mixin gallery {
+  [data-gallery="wrapper"] {
+    white-space: nowrap;
+    overflow-x: scroll;
+    padding-bottom: 100px; //hides scrollbar
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+      white-space: nowrap;
+      li {
+        display: inline-block;
+        cursor: pointer;
+        vertical-align: top;
+        span {
+          display: none;
+          text-align: center;
+          font-family: $font;
+          font-size: 12px;
+          color: $gray_text;
+          font-weight: 300;
+        }
+        img{
+          width: $thumb_width;
+          height: auto;
+          margin: 1px 10px 5px;
+        }
+        &:hover {
+          @include thumbHover;
+        }
+      }
+    }
+  }
+}

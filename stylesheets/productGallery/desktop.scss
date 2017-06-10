@@ -1,0 +1,10 @@
+@mixin desktopLayout {
+  dialog[id^='spylightModal'] {
+}
+
+@include media($medium) {
+  @include desktopLayout;
+}
+@include media($desktop) {
+  @include desktopLayout;
+}
