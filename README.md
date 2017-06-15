@@ -1,6 +1,6 @@
 # React Examples
 
-I have included my webpack configuration, wallaby configuration and a grunt task I created. There are many dependencies that I am not including in this public repo. Source code is for example purposes only.
+I have included my webpack configuration, wallaby configuration and a grunt task I created. There are many dependencies that I am not including in this public repo. Source code is for demonstration purposes only.
 
 ## Apps
 1. [Product Widget](https://github.com/webdynamix/react-examples/tree/master/apps/productWidget)
